@@ -203,7 +203,10 @@ handle_call({change_gettext_dir, Dir}, _From, State) ->
 %%
 handle_call(default_lang, _From, State) ->
     {reply, State#state.def_lang, State};
-
+%%
+handle_call(recreate_ets, _From, State) ->
+    recreate_ets_table(State#state.table_name),
+    {reply, ok, State};
 %%
 handle_call(stop, _, State) ->
     {stop, normal, stopped, State}.

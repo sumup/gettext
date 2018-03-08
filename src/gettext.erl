@@ -50,6 +50,7 @@
          , callback_mod/0
          , write_pretty/2
          , get_language_name/1
+         , recreate_ets/0
         ]).
 
 -include("gettext_internal.hrl").
@@ -174,6 +175,10 @@ lang2cset(Lang) ->
 lang2cset(Server, Lang) ->
     gen_server:call(Server, {lang2cset, Lang}, infinity).
 
+
+%% @doc Recreate the ets cache
+recreate_ets() ->
+    gen_server:call(?DEFAULT_SERVER, recreate_ets).
 
 %% @doc Pretty print PO strings.
 
